@@ -1,7 +1,6 @@
 package org.jmgrgo.view;
 
 import org.jmgrgo.controller.TaskController;
-import org.jmgrgo.exception.IdNotAvailable;
 import org.jmgrgo.exception.TaskNotAvailable;
 import org.jmgrgo.exception.TitleIsEmptyException;
 import org.jmgrgo.exception.TitleNotAvailableException;
@@ -159,7 +158,7 @@ public class TaskMenu {
                 printTask(task);
                 break;
 
-            } catch (IdNotAvailable | TitleIsEmptyException | TaskNotAvailable | TitleNotAvailableException e) {
+            } catch (TitleIsEmptyException | TaskNotAvailable | TitleNotAvailableException e) {
                 System.out.println(e.getMessage());
                 taskId = 0;
             }
@@ -195,7 +194,7 @@ public class TaskMenu {
                 printTask(task);
                 break;
 
-            } catch (IdNotAvailable | TitleIsEmptyException | TitleNotAvailableException e) {
+            } catch (TitleIsEmptyException | TitleNotAvailableException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -225,7 +224,7 @@ public class TaskMenu {
                 // Call the controller to remove the task
                 task = taskController.removeTask(taskId);
                 System.out.println("The task [" + task.getTitle() + "] has been removed successfully.");
-            } catch (TaskNotAvailable | IdNotAvailable e) {
+            } catch (TaskNotAvailable e) {
                 System.out.println(e.getMessage());
             }
 
