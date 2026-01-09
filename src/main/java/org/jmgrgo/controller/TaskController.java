@@ -1,5 +1,6 @@
 package org.jmgrgo.controller;
 
+import org.jmgrgo.exception.TaskNotAvailable;
 import org.jmgrgo.model.Task;
 import org.jmgrgo.service.TaskService;
 
@@ -36,6 +37,23 @@ public class TaskController {
      */
     public List<Task> getAllTasks() {
         return taskService.getTaskList();
+    }
+
+    /**
+     * Retrieves a specific task
+     * @param id id of the target task
+     * @return whether task exists or not
+     */
+    public boolean existsById(Long id){
+        try {
+
+            taskService.findTaskById(id);
+            return true;
+
+        } catch (TaskNotAvailable e){
+            return false;
+        }
+
     }
 
     /**
